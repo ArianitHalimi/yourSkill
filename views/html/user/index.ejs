@@ -1,9 +1,39 @@
-<html>
-    <head>
-        <title>Home <%=username%></title>
-    </head>
-    <body>
-        <h1>Welcome <%= username %></h1>
-        <a href="/logout">Logout</a>
-    </body>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%=subject%> <%=username%></title>
+    <link rel="stylesheet" href="/style/home.css">
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="side">
+        <ul>
+          <a href=""><li class="active">Featured</li></a>
+          <a href=""><li>Recommanded</li></a>
+          <a href=""><li>Creative</li></a>
+          <a href=""><li>By Programming Language</li></a>
+          <a href="/logout"><li id="logout">Logout</li></a>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <div class="header">
+        <h1><%subject%></h1>
+      </div>
+      <div class="body">
+          <% for(var i=0;i<ideas_array.length;i++){ %>
+            <% if(ideas_array.length!=0){ %>
+                <div class="idea">
+                    <h1><%= idea_title %></h1>
+                    <p><%= idea_description %></p>
+                    <a href="#"><button>More Info</button></a>
+                  </div>
+            <%}else{ %>
+                <h1>No ideas found</h1>
+            <%}%>
+          <%}%>
+      </div>
+    </div>
+  </body>
 </html>

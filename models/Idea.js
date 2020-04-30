@@ -13,6 +13,10 @@ const ideas = mongoose.Schema({
         type:String,
         default:'easy'
     },
+    type:{
+        type:String,
+        default:'featured'
+    },
     users_completed:{
         type:Array,
         default: []
@@ -20,6 +24,10 @@ const ideas = mongoose.Schema({
     course_satisfaction:{
         type:Number,
         default:0
+    },
+    hyperlink:{
+        type:String,
+        required: true
     }
 })
 
