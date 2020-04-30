@@ -1,0 +1,72 @@
+body{
+    margin:0%;
+    padding:0%;
+    background-image: linear-gradient(to bottom right, #2874A6, #85C1E9);
+    height:100vh;
+    width:100vw;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 10vh 90vh;
+    text-align: center;
+  }
+  .box{
+    background-color: rgba(0,0,0,0);
+    position: absolute;
+    width:300px;
+    height: 500px;
+    padding:40px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    font-family: "Book Antiqua";
+  }
+  .box form{
+    margin-top: 20vh;
+  }
+  input[type="text"],input[type="password"]{
+    background-color: rgba(0,0,0,0);
+    border: 2px solid white;
+    display: block;
+    margin: 40px -10px;
+    text-align: center;
+    padding: 14px 40px;
+    width:235px;
+    outline:none;
+    transition: 0.25s;
+    font-family: "Book Antiqua";
+    border-radius: 16px;
+    color:white;
+  }
+  input[type="text"]::placeholder,input[type="password"]::placeholder{
+    color: #fff;
+  }
+  input[type="text"]:focus,input[type="password"]:focus{
+    background-color: white;
+    color:black;
+  }
+  input[type="submit"]{
+    background-color: #fff;
+    border: none;
+    display: block;
+    color:#154360;
+    margin: 40px -10px;
+    text-align: center;
+    padding: 14px 40px;
+    width:315px;
+    outline: none;
+    transition: 0.25s;
+    font-family: "Book Antiqua";
+    border-radius: 16px;
+  }
+  .box input[type="submit"]:hover{
+    background:#154360;
+    color:white;
+  }
+  .box p{
+    color:white;
+  }
+  .box a{
+    color:white;
+  }
+  

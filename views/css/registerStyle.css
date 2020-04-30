@@ -1,0 +1,75 @@
+body{
+  margin:0%;
+  padding:0%;
+  background-image: linear-gradient(to bottom right, #B3B6B7, #FFFFFF);
+  height:100vh;
+  width:100vw;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+  text-align: center;
+}
+.box{
+  background-color: rgba(0,0,0,0);
+  position: absolute;
+  width:300px;
+  height: 500px;
+  padding:40px;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  font-family: "Book Antiqua";
+}
+.box form{
+  margin-top: 10vh;
+}
+input[type="text"],input[type="password"],input[type="email"]{
+  background-color: rgba(0,0,0,0);
+  border: 2px solid #154360;
+  display: block;
+  margin: 40px -10px;
+  text-align: center;
+  padding: 14px 40px;
+  width:235px;
+  outline:none;
+  transition: 0.25s;
+  font-family: "Book Antiqua";
+  border-radius: 16px;
+  color:white;
+}
+input[type="text"]::placeholder,input[type="password"]::placeholder,input[type="email"]::placeholder{
+  color: #154360;
+}
+input[type="text"]:focus,input[type="password"]:focus,input[type="email"]:focus{
+  background-color: white;
+  color:#154360;
+}
+input[type="submit"]{
+  background-color: #154360;
+  border: none;
+  display: block;
+  color:#FFFFFF;
+  margin: 40px -10px;
+  text-align: center;
+  padding: 14px 40px;
+  width:315px;
+  outline: none;
+  transition: 0.25s;
+  font-family: "Book Antiqua";
+  border-radius: 16px;
+}
+.box input[type="submit"]:hover{
+  background:#34495E;
+  color:white;
+}
+.box p{
+  color:#154360;
+}
+.box a{
+  color:#154360;
+  text-decoration: none;
+}
+.box a:hover{
+  text-decoration: underline;
+}
