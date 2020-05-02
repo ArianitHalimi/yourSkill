@@ -18,7 +18,7 @@ router.post('/login',
         if(user.hasConfirmedEmail){
           if(user.acc_type==='user'){
             console.log('User ' + req.body.username + ' has logged in on ' + Date());
-            res.redirect('/user/'+req.body.username);
+            res.redirect('/user/featured');
           }
           else if(user.acc_type==='admin'){
             console.log('Admin ' + req.body.username + ' has logged in on ' + Date())

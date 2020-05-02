@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/',indexRouter)
 app.use("/style", express.static(path.join(__dirname, 'views/css')))
+app.use("/javascript", express.static(path.join(__dirname, 'views/javascript')))
 
 const port = process.env.PORT || 5000
 app.listen(port,()=>{

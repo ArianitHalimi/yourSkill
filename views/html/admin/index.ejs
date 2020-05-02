@@ -1,1 +1,47 @@
-<a href="/logout">Logout</a>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/style/adminStyle.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/javascript/addIdea.js"></script>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="side">
+        <ul>
+            <a href="/user/featured"><li class="active">Featured</li></a>
+            <a href="/user/recommanded"><li>Recommanded</li></a>
+            <a href="/user/creative"><li>Creative</li></a>
+            <a href="/user/bylanguage"><li>By Programming Language</li></a>
+            <a href="/logout"><li id="logout">Logout</li></a>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <div class="header">
+        <h1>Featured</h1>
+        <button id="btn">Add Idea</button>
+        <form class="hidden" id="hidden" action="/add/idea" method="post">
+          <input type="text" id="name" name="idea_title" value="">
+        </form>
+      </div>
+      <div class="body">
+        <div class="idea">
+            <% for(var i=0;i<ideas_array.length;i++){ %>
+                <% if(ideas_array.length!=0){ %>
+                    <div class="idea">
+                        <h1><%= idea_title %></h1>
+                        <p><%= idea_description %></p>
+                        <a href="#"><button>More Info</button></a>
+                      </div>
+                <%}else{ %>
+                    <h1>No ideas found</h1>
+                <%}%>
+              <%}%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

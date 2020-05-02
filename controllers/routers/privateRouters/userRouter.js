@@ -4,10 +4,10 @@ const User = require('../../../models/User')
 const Idea = require('../../../models/Idea')
 const {ensureAuthenticated,accessControl} = require('../../../config/ensureAuthentication')
 
-router.get('/:id',accessControl,(req,res)=>{
-    var ideas_array = []
-    User.findOne({username:req.params.id},(err,user)=>{
-        Idea.find({},(err,ideas)=>{
+router.get('/:ideaname/',accessControl,(req,res)=>{
+    User.findById(req.session.passport.user,(err,user)=>{
+        var ideas_array = []
+        Idea.find({type:req.params.ideaname},(err,ideas)=>{
             if(ideas.length == 0){
                 //do nothing
             }
