@@ -18,9 +18,7 @@ router.get('/:ideaname/',accessControl,(req,res)=>{
                 res.render('./html/user/index.ejs',{
                     subject: ideas.type,
                     username:user.username,
-                    ideas_array: ideas_array,
-                    idea_title: ideas.name,
-                    idea_description: ideas.description
+                    ideas_array: ideas_array
                 })
             }
         })
@@ -28,6 +26,17 @@ router.get('/:ideaname/',accessControl,(req,res)=>{
 })
 
 router.get('/idea/:ideaname',ensureAuthenticated,(req,res)=>{
-
+    Idea.findOne({Iname:req.params.ideaname},(err,ideas)=>{
+        if(ideas){
+            res.render('./html/user/viewIdea.ejs',{
+                ideaname: ideas.Iname,
+                ideadescription: ideas.description,
+                ideadifficulty: ideas.difficulty,
+                users_completed: ideas.users_completed.length
+            })
+        }else{
+            res.send('404 not found')
+        }
+    })
 })
 module.exports = router

@@ -25,9 +25,9 @@
           <% for(var i=0;i<ideas_array.length;i++){ %>
             <% if(ideas_array.length!=0){ %>
                 <div class="idea">
-                    <h1><%= idea_title %></h1>
-                    <p><%= idea_description %></p>
-                    <a href="#"><button>More Info</button></a>
+                    <h1><%=  ideas_array[i][i].Iname %></h1>
+                    <p><%=  ideas_array[i][i].description %></p>
+                    <a href="<%=ideas_array[i][i].userlink%>"><button>More Info</button></a>
                   </div>
             <%}else{ %>
                 <h1>No ideas found</h1>

@@ -83,6 +83,7 @@ router.post('/add/idea/:ideaname',ensureAuthenticated,(req,res)=>{
                     ideas.type = req.body.type
                     ideas.Iname = req.body.name
                     ideas.hyperlink = '/adm/add/idea/'+req.body.name
+                    ideas.userlink = '/user/idea/'+req.body.name
                     ideas.save((err)=>{
                         if(err) throw err
                     })

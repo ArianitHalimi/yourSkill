@@ -27,6 +27,10 @@ const ideas = mongoose.Schema({
     hyperlink:{
         type:String,
         required: true
+    },
+    userlink:{
+        type:String,
+        required: true
     }
 })
 
