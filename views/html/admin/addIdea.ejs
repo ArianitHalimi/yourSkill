@@ -1,16 +1,42 @@
-<form action="/adm/add/idea/<%=ideaname%>" method="post">
-    <input type="text" placeholder="Name" value="<%=ideaname%>" name="name">
-    <textarea name="description" cols="30" rows="10" placeholder="Description"><%=ideadescription%></textarea>
-    <select name="difficulty">
-        <option value="ez" checked>Easy</option>
-        <option value="med">Medium</option>
-        <option value="hard">Hard</option>
-        <option value="vhard">Very Hard</option>
-    </select>
-    <select name="type">
-        <option value="featured" checked>Featured</option>
-        <option value="recommanded">Recommanded</option>
-        <option value="creative">Creative</option>
-    </select>
-    <input type="submit" value="Submit">
-</form>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/style/editIdea.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/javascript/editIdea.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <div class="editor">
+        <form action="/adm/add/idea/<%=ideaname%>" method="post" id="submit">
+          <input type="text" placeholder="Name" value="<%=ideaname%>" name="name">
+          <textarea name="description" cols="30" rows="20" placeholder="Description"><%=ideadescription%></textarea>
+          <div class="selectareas">
+            <select name="difficulty">
+              <option value="ez" checked>Easy</option>
+              <option value="med">Medium</option>
+              <option value="hard">Hard</option>
+              <option value="vhard">Very Hard</option>
+            </select>
+            <select name="type">
+              <option value="featured" checked>Featured</option>
+              <option value="recommanded">Recommanded</option>
+              <option value="creative">Creative</option>
+            </select>
+          </div>
+          <input type="submit">
+        </form>
+      </div>
+      <div class="buttons">
+        <button id="edit"><i class="fas fa-pen fa-2x"></i></button>
+        <form action="/adm/delete/idea/<%=ideaname%>" method="post" id="deleteSubmit">
+          <input type="submit">
+        </form>
+        <button id="delete"><i class="fas fa-trash fa-2x"></i></button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -9,7 +9,7 @@ var callback = function(){
             },
           },
         }).then(text=>{
-            if(text!=='' || typeof text !== 'undefined'){
+            if(text !=='' || typeof text !== 'undefined' || text !== null){
                 document.getElementById('name').value = text;
                 document.getElementById('hidden').submit()
             }else{

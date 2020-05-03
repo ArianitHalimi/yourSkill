@@ -4,7 +4,7 @@ const User = require('../../../models/User')
 const Idea = require('../../../models/Idea')
 const {ensureAuthenticated,accessControl} = require('../../../config/ensureAuthentication')
 
-router.get('/:ideaname',accessControl,(req,res)=>{
+router.get('/:ideaname',ensureAuthenticated,(req,res)=>{
     User.findById(req.session.passport.user,(err,user)=>{
         Idea.find({type:req.params.ideaname},(err,ideas)=>{
             var ideas_array = []
@@ -34,14 +34,18 @@ router.post('/add/idea',ensureAuthenticated,(req,res)=>{
             res.render('./html/errors/403_forbidden.ejs')
         }else{
             var idea_title = req.body.idea_title
-            var new_idea = new Idea({
-                Iname:idea_title,
-                hyperlink: '/adm/add/idea/'+idea_title
-            })
-            new_idea.save((err)=>{
-                if(err) throw err
-            })
-            res.redirect('/adm/add/idea/'+idea_title)
+            if(idea_title){
+                var new_idea = new Idea({
+                    Iname:idea_title,
+                    hyperlink: '/adm/add/idea/'+idea_title
+                })
+                new_idea.save((err)=>{
+                    if(err) throw err
+                })
+                res.redirect('/adm/add/idea/'+idea_title)
+            }else{
+                res.redirect('/adm/featured')
+            } 
         }
     })
 })
@@ -78,7 +82,7 @@ router.post('/add/idea/:ideaname',ensureAuthenticated,(req,res)=>{
                     ideas.difficulty = req.body.difficulty
                     ideas.type = req.body.type
                     ideas.Iname = req.body.name
-                    ideas.hyperlink = '/adm/add/idea'+req.body.name
+                    ideas.hyperlink = '/adm/add/idea/'+req.body.name
                     ideas.save((err)=>{
                         if(err) throw err
                     })
@@ -91,4 +95,19 @@ router.post('/add/idea/:ideaname',ensureAuthenticated,(req,res)=>{
         })
     })
 })
+
+router.post('/delete/idea/:ideaname',ensureAuthenticated,(req,res)=>{
+    User.findById(req.session.passport.user,(err,user)=>{
+        if(user.acc_type == 'admin'){
+            Idea.findOneAndRemove({Iname:req.params.ideaname},{useFindAndModify:false},(err,data)=>{
+                if(err) throw err
+                if(data){
+                    console.log('One idea was deleted by admin ' + user.username + ' at ' + Date());
+                }
+            })
+            res.redirect('/adm/featured')
+        }
+    })
+})
+
 module.exports = router

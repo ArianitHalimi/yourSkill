@@ -1,0 +1,86 @@
+body{
+    height:100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: #E5E7E9;
+  }
+  .box{
+    width: 60vw;
+    height: 90vh;
+    margin:auto;
+    margin-top:5vh;
+    background-color: white;
+    border: 1px solid #D0D3D4;
+    border-bottom: 5px solid #82E0AA;
+    border-radius: 5px;
+    display: grid;
+    grid-template-rows: 85vh 5vh;
+  }
+  .editor{
+    width:40vh;
+    margin:auto;
+    /*border: 1px solid black;*/
+  }
+  .editor input[type="text"]{
+    width: 100%;
+    padding:2%;
+    text-align: center;
+    border: none;
+    background-color: white;
+    text-transform: uppercase;
+    font-size: 200%;
+  }
+  .editor input[type="text"]:focus{
+    outline: none;
+    border-bottom: 1px solid grey;
+  }
+  .editor textarea{
+    width: 150%;
+    resize: none;
+    overflow-y: scroll;
+    transform: translateX(-15%);
+    border: none;
+    text-align: center;
+    color:grey;
+  }
+  .editor textarea:focus{
+    outline: none;
+    border-bottom: 1px solid grey;
+  }
+  textarea::-webkit-scrollbar {
+    display: none;
+  }
+  .selectareas{
+    width:100%;
+    margin: auto;
+    text-align: center;
+  }
+  .editor select{
+    border: 1px solid white;
+    border-bottom: 1px solid black;
+    outline: none;
+    margin: auto;
+    margin-left:10%;
+  }
+  .box button{
+    background-color: white;
+    border: none;
+    color:grey;
+    padding-right:2%;
+    float: right;
+  }
+  .box button:hover{
+    color:black;
+  }
+  #delete{
+    color:#E74C3C;
+  }
+  #delete:hover{
+    color:red;
+  }
+  input[type="submit"]{
+      display: none;
+  }
+  
