@@ -13,9 +13,15 @@
         <h1><%=ideaname%></h1>
         <p><%=ideadescription%></p>
       </div>
+      <div class="submitarea">
+        <form action="/user/submit/<%=ideaname%>" method="post">
+          <input type="text" name="repository" placeholder="Link of repository...">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
       <div class="bottomvalues">
         <p id="difficulty">Difficulty: <%=ideadifficulty%></p>
-        <p id="users_completed">Users Completed Course:<%=users_completed%></p>
+        <p id="users_completed">Users Submitted Course:<%=users_completed%></p>
       </div>
     </div>
   </body>

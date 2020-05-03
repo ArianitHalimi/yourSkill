@@ -1,42 +1,60 @@
 body{
-    height:100vh;
-    width: 100vw;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    background-color: #E5E7E9;
-  }
-  .box{
-    width: 60vw;
-    height: 90vh;
-    margin:auto;
-    margin-top:5vh;
-    background-color: white;
-    border: 1px solid #D0D3D4;
-    border-bottom: 5px solid #82E0AA;
-    border-radius: 5px;
-    display: grid;
-    grid-template-rows: 85vh 5vh;
-  }
-  .editor{
-    width:40vw;
-    height:85vh;
-    overflow-y: scroll;
-    margin:auto;
-    text-align: center;
-  }
-  .editor::-webkit-scrollbar{
-    display: none;
-  }
-  .bottomvalues{
-    width: 40vw;
-    margin: auto;
-    padding:0 5%;
-  }
-  .bottomvalues #difficulty{
-    float: left;
-  }
-  .bottomvalues #users_completed{
-    float: right;
-  }
-  
+  height:100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: #E5E7E9;
+}
+.box{
+  width: 60vw;
+  height: 90vh;
+  margin:auto;
+  margin-top:5vh;
+  background-color: white;
+  border: 1px solid #D0D3D4;
+  border-bottom: 5px solid #82E0AA;
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: 80vh 5vh 5vh;
+}
+.editor{
+  width:40vw;
+  height:85vh;
+  overflow-y: scroll;
+  margin:auto;
+  text-align: center;
+}
+.editor::-webkit-scrollbar{
+  display: none;
+}
+.bottomvalues{
+  width: 40vw;
+  margin: auto;
+  padding:0 5%;
+}
+.bottomvalues #difficulty{
+  float: left;
+}
+.bottomvalues #users_completed{
+  float: right;
+}
+.submitarea{
+  width:40vw;
+  margin: auto;
+}
+.submitarea input[type="text"]{
+  width:76%;
+  padding:1% 2%;
+}
+.submitarea input[type="submit"]{
+  width:14%;
+  padding:1% 2%;
+  color:white;
+  background-color: #2ECC71;
+  border: 1px solid #2ECC71;
+}
+.submitarea input[type="submit"]:hover{
+  background-color: #239B56;
+  border: 1px solid #239B56;
+}

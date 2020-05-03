@@ -82,8 +82,8 @@ router.post('/add/idea/:ideaname',ensureAuthenticated,(req,res)=>{
                     ideas.difficulty = req.body.difficulty
                     ideas.type = req.body.type
                     ideas.Iname = req.body.name
-                    ideas.hyperlink = '/adm/add/idea/'+req.body.name
                     ideas.userlink = '/user/idea/'+req.body.name
+                    ideas.hyperlink = '/adm/add/idea/'+req.body.name
                     ideas.save((err)=>{
                         if(err) throw err
                     })
@@ -109,6 +109,10 @@ router.post('/delete/idea/:ideaname',ensureAuthenticated,(req,res)=>{
             res.redirect('/adm/featured')
         }
     })
+})
+
+router.get('/check/ideas',ensureAuthenticated,(req,res)=>{
+    res.send('check ideas')
 })
 
 module.exports = router
