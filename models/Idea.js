@@ -1,13 +1,12 @@
 const mongoose = require('mongoose')
 
 const ideas = mongoose.Schema({
-    name:{
-        type:String,
-        required:true
+    Iname:{
+        type:String
     },
     description:{
         type:String,
-        required:true
+        default: 'none'
     },
     difficulty:{
         type:String,

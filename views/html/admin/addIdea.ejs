@@ -1,0 +1,16 @@
+<form action="/adm/add/idea/<%=ideaname%>" method="post">
+    <input type="text" placeholder="Name" value="<%=ideaname%>" name="name">
+    <textarea name="description" cols="30" rows="10" placeholder="Description"><%=ideadescription%></textarea>
+    <select name="difficulty">
+        <option value="ez" checked>Easy</option>
+        <option value="med">Medium</option>
+        <option value="hard">Hard</option>
+        <option value="vhard">Very Hard</option>
+    </select>
+    <select name="type">
+        <option value="featured" checked>Featured</option>
+        <option value="recommanded">Recommanded</option>
+        <option value="creative">Creative</option>
+    </select>
+    <input type="submit" value="Submit">
+</form>

@@ -22,7 +22,7 @@ router.post('/login',
           }
           else if(user.acc_type==='admin'){
             console.log('Admin ' + req.body.username + ' has logged in on ' + Date())
-            res.redirect('/adm/' + req.body.username);
+            res.redirect('/adm/featured');
           }
         }else{
           res.redirect('/additional/'+user.username)
