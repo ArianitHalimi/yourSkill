@@ -22,7 +22,7 @@ router.get('/:ideaname',ensureAuthenticated,(req,res)=>{
                     })
                 }else{
                     res.send('error')
-                } 
+                }
             }
         })
     })
@@ -45,7 +45,7 @@ router.post('/add/idea',ensureAuthenticated,(req,res)=>{
                 res.redirect('/adm/add/idea/'+idea_title)
             }else{
                 res.redirect('/adm/featured')
-            } 
+            }
         }
     })
 })
@@ -112,7 +112,60 @@ router.post('/delete/idea/:ideaname',ensureAuthenticated,(req,res)=>{
 })
 
 router.get('/check/ideas',ensureAuthenticated,(req,res)=>{
-    res.send('check ideas')
+    User.findById(req.session.passport.user,(err,user)=>{
+    Idea.find({},(err,ideas)=>{
+            if(user.acc_type == 'admin'){
+              if(ideas.length !== 0){
+                var ideas_array = []
+                for (var i = 0; i < ideas.length; i++) {
+                  for (var j = 0; j < ideas[i].users_completed.length; j++) {
+                    if(ideas[i].users_completed[j].valid==false){
+                      ideas_array.push(ideas[i].users_completed[j])
+                    }
+                  }
+                }
+                function removeDuplicates(data){
+                  return data.filter((value, index) => data.indexOf(value)!== index)
+                }
+                var unique_ideas_completed = removeDuplicates(ideas_array)
+                res.render('./html/admin/checkIdeas.ejs',{
+                    submited_ideas: ideas_array
+                })
+              }else{
+                res.send('Error')
+              }
+            }
+        })
+    })
+})
+
+router.get('/validate/:ideaname/:ideauser',ensureAuthenticated,(req,res)=>{
+    User.findById(req.session.passport.user,(err,user)=>{
+        Idea.findOne({Iname:req.params.ideaname},(err,ideas)=>{
+            var isvalid = false
+            console.log(ideas.users_completed[0].valid);
+            for(var i=0;i<ideas.users_completed.length;i++){
+                if(ideas.users_completed[i].name == req.params.ideaname && ideas.users_completed[i].user == req.params.ideauser){
+                    ideas.users_completed[i].valid = true
+                    ideas.markModified('users_completed')
+                    ideas.save((err)=>{
+                        if(err) throw err
+                    })
+                    isvalid = true
+                    console.log(ideas.users_completed[i].valid);
+                }else{
+                    console.log('there was an error here')
+                }
+            }
+            if(user.acc_type == 'admin'){
+                if(isvalid){
+                    res.redirect('/adm/featured')
+                }else{
+                    res.send('Could not find the submission')
+                }
+            }
+        })
+    })
 })
 
 module.exports = router

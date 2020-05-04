@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/style/checkIdeasStyle.css">
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="side">
+        <ul>
+            <a href="/adm/featured"><li class="active">Featured</li></a>
+            <a href="/adm/recommanded"><li>Recommanded</li></a>
+            <a href="/adm/creative"><li>Creative</li></a>
+            <a href="/adm/bylanguage"><li>By Programming Language</li></a>
+            <a href="/adm/check/ideas"><li>Check User Submissions</li></a>
+            <a href="/logout"><li id="logout">Logout</li></a>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <div class="header">
+        <h1>Check User Submissions</h1>
+      </div>
+      <div class="body">
+        <ul>
+            <% for(var i=0;i<submited_ideas.length;i++){ %>
+              <li>
+                <a href="/adm/add/idea/<%= submited_ideas[i].name %>" id="left" target="_blank"><%= submited_ideas[i].name %></a>
+                <a href="/adm/validate/<%= submited_ideas[i].name %>/<%=submited_ideas[i].user %>" id="right">Validate</a>
+                <a href="<%=submited_ideas[i].repository %>" id="right" target="_blank"><%=submited_ideas[i].user%></a>
+              </li>
+            <% } %>
+          </ul>
+      </div>
+    </div>
+  </body>
+</html>
