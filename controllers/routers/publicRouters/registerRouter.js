@@ -7,7 +7,11 @@ const {ensureAuthenticated,accessControl} = require('../../../config/ensureAuthe
 
 router.get('/register',(req,res)=>{
   res.render('./html/register.ejs',{
-    error: ''
+    error: '',
+    username: '',
+    email: '',
+    password: '',
+    cpass: ''
   })
 })
 
@@ -17,31 +21,13 @@ router.post('/register',(req,res)=>{
   let password = req.body.password
   let cpass = req.body.cpassword
   if(!username || !email || !password || !cpass){
-    res.render('./html/register.ejs',{
-      error: 'Please fill up all the fields',
-      username,
-      email,
-      password,
-      cpass
-    })
+    sendError(req,res,'Please fill up all the fields')
   }
   if(password !== cpass){
-    res.render('./html/register.ejs',{
-      error: 'Passwords must be the same',
-      username,
-      email,
-      password,
-      cpass
-    })
+    sendError(req,res,'Passwords must be the same')
   }
   if(password.length<8){
-    res.render('./html/register.ejs',{
-      error: 'Passwords must be at least 8 characters',
-      username,
-      email,
-      password,
-      cpass
-    })
+    sendError(req,res,'Passwords must be at least 8 characters')
   }
   else{
     User.findOne({$or:[{email:email},{username:username}]}).then(user => {
@@ -75,5 +61,19 @@ router.post('/register',(req,res)=>{
     })
   }
 })
+
+const sendError = (req,res,errorMsg) => {
+  let username = req.body.username
+  let email = req.body.email
+  let password = req.body.password
+  let cpass = req.body.cpassword
+  res.render('./html/register.ejs',{
+    error: errorMsg,
+    username,
+    email,
+    password,
+    cpass
+  })
+}
 
 module.exports = router
