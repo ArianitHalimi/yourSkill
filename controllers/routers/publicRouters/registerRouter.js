@@ -6,7 +6,9 @@ const User = require('../../../models/User.js')
 const {ensureAuthenticated,accessControl} = require('../../../config/ensureAuthentication')
 
 router.get('/register',(req,res)=>{
-  res.render('./html/register.ejs')
+  res.render('./html/register.ejs',{
+    error: ''
+  })
 })
 
 router.post('/register',(req,res)=>{
@@ -14,23 +16,43 @@ router.post('/register',(req,res)=>{
   let email = req.body.email
   let password = req.body.password
   let cpass = req.body.cpassword
-  let errors = []
   if(!username || !email || !password || !cpass){
-    errors.push('Please fill up all the fields')
+    res.render('./html/register.ejs',{
+      error: 'Please fill up all the fields',
+      username,
+      email,
+      password,
+      cpass
+    })
   }
   if(password !== cpass){
-    errors.push('Passwords must be the same')
+    res.render('./html/register.ejs',{
+      error: 'Passwords must be the same',
+      username,
+      email,
+      password,
+      cpass
+    })
   }
   if(password.length<8){
-    errors.push('Passwords must be at least 8 characters')
-  }
-  if(errors.length>0){
-    res.send(errors[0])
+    res.render('./html/register.ejs',{
+      error: 'Passwords must be at least 8 characters',
+      username,
+      email,
+      password,
+      cpass
+    })
   }
   else{
-    User.findOne({email:email} || {username:username}).then(user => {
+    User.findOne({$or:[{email:email},{username:username}]}).then(user => {
       if(user){
-        errors.push('User with the same email or username already exists')
+        res.render('./html/register.ejs',{
+          error: 'An user with the same username or email already exists',
+          username,
+          email,
+          password,
+          cpass
+        })
       }else{
         bcrypt.genSalt(10,(err,salt)=>{
           if(err) throw err
@@ -52,6 +74,6 @@ router.post('/register',(req,res)=>{
       }
     })
   }
-
 })
+
 module.exports = router
