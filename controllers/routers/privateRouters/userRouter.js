@@ -33,16 +33,13 @@ router.get('/:ideaname/',ensureAuthenticated,(req,res)=>{
 router.get('/idea/:ideaname',ensureAuthenticated,(req,res)=>{
     Idea.findOne({Iname:req.params.ideaname})
     .then(ideas=>{
-        if(ideas){
-            res.render('./html/user/viewIdea.ejs',{
-                ideaname: ideas.Iname,
-                ideadescription: ideas.description,
-                ideadifficulty: ideas.difficulty,
-                users_completed: ideas.users_completed.length
-            })
-        }else{
-            res.send('404 not found')
-        }
+        if(!ideas) res.send('404 not found')
+        res.render('./html/user/viewIdea.ejs',{
+            ideaname: ideas.Iname,
+            ideadescription: ideas.description,
+            ideadifficulty: ideas.difficulty,
+            users_completed: ideas.users_completed.length
+        })
     })
     .catch(err=>{
         if(err) throw err
@@ -57,21 +54,21 @@ router.post('/submit/:ideaname',ensureAuthenticated,(req,res)=>{
         return Idea.findOne({Iname:req.params.ideaname})
     })
     .then(ideas=>{
-        if(checkGithub(repo)){
-            let userCompleted = {
-                user: userdata.username,
-                name:req.params.ideaname,
-                repository: repo,
-                valid: false
-            }
-            ideas.users_completed.push(userCompleted)
-            ideas.save((err)=>{
-                if(err) throw err
-            })
-            res.redirect('/user/featured')
-        }else{
-            res.send('Invalid repository')
+        if(!checkGithub(repo)) res.send('Invalid Repository')
+        let userCompleted = {
+            user: userdata.username,
+            name:req.params.ideaname,
+            repository: repo,
+            valid: false
         }
+        ideas.users_completed.push(userCompleted)
+        ideas.save((err)=>{
+            if(err) throw err
+        })
+        res.redirect('/user/featured')
+    })
+    .catch(err=>{
+        if(err) throw err
     })
 })
 

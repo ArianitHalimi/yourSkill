@@ -1,4 +1,3 @@
-//const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 
 let password = process.env.DB_PASS;
