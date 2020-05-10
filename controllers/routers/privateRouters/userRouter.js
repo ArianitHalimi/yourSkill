@@ -54,15 +54,22 @@ router.post('/submit/:ideaname',ensureAuthenticated,(req,res)=>{
         return Idea.findOne({Iname:req.params.ideaname})
     })
     .then(ideas=>{
-        if(!checkGithub(repo)) res.send('Invalid Repository')
+        if(!checkGithub(req.body.repository)) res.send('Invalid Repository')
         let userCompleted = {
             user: userdata.username,
             name:req.params.ideaname,
-            repository: repo,
+            repository: req.body.repository,
             valid: false
         }
         ideas.users_completed.push(userCompleted)
         ideas.save((err)=>{
+            if(err) throw err
+        })
+        if(ideas.difficulty=='ez') userdata.experience += 5
+        if(ideas.difficulty=='med') userdata.experience += 10
+        if(ideas.difficulty == 'hard') userdata.experience += 15
+        if(ideas.difficulty == 'vhard') userdata.experience += 20
+        userdata.save((err)=>{
             if(err) throw err
         })
         res.redirect('/user/featured')

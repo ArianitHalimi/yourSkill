@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
   hasConfirmedEmail:{
     type:Boolean,
     default:true
+  },
+  experience:{
+    type:Number,
+    defualt:0
   }
 })
 

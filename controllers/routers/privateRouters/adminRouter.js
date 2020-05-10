@@ -88,9 +88,13 @@ router.post('/add/idea/:ideaname',ensureAuthenticated,(req,res)=>{
         ideas.Iname = req.body.name
         ideas.userlink = '/user/idea/'+req.body.name
         ideas.hyperlink = '/adm/add/idea/'+req.body.name
+        userdata.experience = userdata.experience + 5
         ideas.save((err)=>{
-                if(err) throw err
-            })
+            if(err) throw err
+        })
+        userdata.save((err)=>{
+            if(err) throw err
+        })
         res.redirect('/adm/featured')
     })
     .catch(err=>{
@@ -107,6 +111,10 @@ router.post('/delete/idea/:ideaname',ensureAuthenticated,(req,res)=>{
             if(data){
                 console.log('One idea was deleted by admin ' + user.username + ' at ' + Date());
             }
+        })
+        user.experience = user.experience - 2
+        user.save((err)=>{
+            if(err) throw err
         })
         res.redirect('/adm/featured')
     })

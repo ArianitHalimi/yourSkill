@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const loginRouter = require('./publicRouters/loginRouter')
 const registerRouter = require('./publicRouters/registerRouter')
+const othersRouter = require('./publicRouters/othersRouter')
 const userRouter = require('./privateRouters/userRouter')
 const admRouter = require('./privateRouters/adminRouter')
 
@@ -11,6 +12,7 @@ router.get('/',(req,res)=>{
 
 router.use('/',loginRouter)
 router.use('/',registerRouter)
+router.use('/',othersRouter)
 router.use('/user/',userRouter)
 router.use('/adm/',admRouter)
 
