@@ -33,7 +33,7 @@ router.get('/:ideaname/',ensureAuthenticated,(req,res)=>{
 router.get('/idea/:ideaname',ensureAuthenticated,(req,res)=>{
     Idea.findOne({Iname:req.params.ideaname})
     .then(ideas=>{
-        if(!ideas) res.send('404 not found')
+        if(!ideas) res.render('./html/errors/404_notfound.ejs')
         res.render('./html/user/viewIdea.ejs',{
             ideaname: ideas.Iname,
             ideadescription: ideas.description,
@@ -67,8 +67,8 @@ router.post('/submit/:ideaname',ensureAuthenticated,(req,res)=>{
         })
         if(ideas.difficulty=='ez') userdata.experience += 5
         if(ideas.difficulty=='med') userdata.experience += 10
-        if(ideas.difficulty == 'hard') userdata.experience += 15
-        if(ideas.difficulty == 'vhard') userdata.experience += 20
+        if(ideas.difficulty=='hard') userdata.experience += 15
+        if(ideas.difficulty=='vhard') userdata.experience += 20
         userdata.save((err)=>{
             if(err) throw err
         })

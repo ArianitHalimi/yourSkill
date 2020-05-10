@@ -60,7 +60,7 @@ router.get('/add/idea/:ideaname',ensureAuthenticated,(req,res)=>{
     })
     .then(ideas=>{
         if(userdata.acc_type!=='admin') res.render('./html/erros/403_forbidden.ejs')
-        if(!ideas) res.send('404 Not found')
+        if(!ideas) res.render('./html/errors/404_notfound.ejs')
         res.render('./html/admin/addIdea.ejs',{
             ideaname:ideas.Iname,
             ideadescription: ideas.description

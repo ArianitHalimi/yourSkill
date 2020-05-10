@@ -1,0 +1,21 @@
+body{
+    margin: 0;
+    padding: 0;
+  }
+  .box{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  }
+  .box h1{
+    font-size:1000%;
+    margin: 0px auto;
+    font-family: Arial;
+  }
+  .box h3{
+    font-size:150%;
+    margin: 0 auto;
+    font-family: Arial;
+  }

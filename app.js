@@ -25,6 +25,14 @@ app.use('/',indexRouter)
 app.use("/style", express.static(path.join(__dirname, 'views/css')))
 app.use("/javascript", express.static(path.join(__dirname, 'views/javascript')))
 
+app.use((req, res, next)=>{
+  res.status(404);
+  if (req.accepts('html')) {
+    res.render('./html/errors/404_notfound.ejs');
+    return;
+  }
+});
+
 const port = process.env.PORT || 5000
 app.listen(port,()=>{
   console.log(`Server started on port ${port}...`)
